@@ -1,0 +1,61 @@
+@import '../../variables.scss';
+
+.navbar {
+    height: $navbar-height;
+    padding: 0 1rem;
+    color: $font-color-light;
+    background-color: $navbar-color;
+
+    .navbarNav {
+        max-width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.navItem {
+    width: calc($navbar-height * 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .navIcon {
+        width: $navbar-button-size;
+        height: $navbar-button-size;
+        margin: 2px;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: lightblue;
+    }
+}
+
+.dropdown {    
+    width: 300px;
+    top: 70px;
+    padding: 1rem;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 5px;
+    transform: translateX(-50%);
+    background-color: gray;
+}
+
+.dropdownItem {
+    height: 50px;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    
+    transition: background $speed;
+
+    &:hover {
+        background-color: red;
+    }
+
+
+}
