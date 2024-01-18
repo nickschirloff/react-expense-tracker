@@ -1,6 +1,26 @@
 @import '../../variables.scss';
 
 .navbar {
+    width: 100%;
+    height: $navbar-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $font-color-light;
+    background-color: $navbar-color;
+
+    .navbarRight {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h3 {
+        padding: 0 1rem;
+    }
+}
+
+.navbarDropdown {
     height: $navbar-height;
     padding: 0 1rem;
     color: $font-color-light;
@@ -35,27 +55,28 @@
 }
 
 .dropdown {    
-    width: 300px;
+    width: 250px;
     top: 70px;
+    z-index: 1;
     padding: 1rem;
     position: absolute;
     overflow: hidden;
     border-radius: 5px;
     transform: translateX(-50%);
-    background-color: gray;
+    background-color: $navbar-accent-color;
 }
 
 .dropdownItem {
-    height: 50px;
+    height: 40px;
+    gap: 15px;
     padding: 0.5rem;
     display: flex;
     align-items: center;
-    
+    border-radius: 5px;
     transition: background $speed;
 
     &:hover {
-        background-color: red;
+        background-color: white;
     }
-
 
 }

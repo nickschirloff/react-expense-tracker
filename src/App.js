@@ -1,17 +1,10 @@
 import './App.css';
-import NavItem from './components/navbar/NavItem';
-import Navbar from './components/navbar/Navbar';
-import TestImg from './assets/testimg/testperson.jpg';
-import DropdownMenu from './components/navbar/DropdownMenu';
+import Home from './pages/home/Home';
 
 function App() {
   return (
     <div className="App">
-      <Navbar>
-        <NavItem icon={TestImg}>
-          <DropdownMenu />
-        </NavItem>
-      </Navbar>
+      <Home />
     </div>
   );
 }
