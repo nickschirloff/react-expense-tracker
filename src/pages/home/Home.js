@@ -5,6 +5,7 @@ import TestImg from '../../assets/testimg/testperson.jpg';
 import AccountInfo from '../../components/account/AccountInfo';
 import SavingsGoal from '../../components/savings/SavingsGoal';
 import Transactions from '../../components/transactions/Transactions';
+import { useGetUserData } from '../../hooks/useGetUserData';
 
 const Home = () => {
 
@@ -19,10 +20,12 @@ const Home = () => {
     ]
   }
 
+  const { profilePicture } = useGetUserData();
+
   return(
     <>
       <Navbar>
-        <NavItem icon={TestImg}>
+        <NavItem icon={profilePicture}>
           <DropdownMenu />
         </NavItem>
       </Navbar>

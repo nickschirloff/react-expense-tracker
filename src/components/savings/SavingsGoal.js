@@ -12,8 +12,8 @@ const SavingsGoal = (props) => {
            <h2>Your current savings goal:</h2>
            <select>
             {
-              props.data.uid1.map((item) => {
-                return  <option value={item}>{item}</option>;
+              props.data.uid1.map((item, index) => {
+                return  <option value={item} key={index}>{item}</option>;
               }) 
             }
            </select>
