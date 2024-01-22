@@ -4,6 +4,7 @@ import { useState } from 'react';
 const SavingsGoal = (props) => {
 
   const [isEditing, setIsEditing] = useState(false);
+  const [isAddingGoal, setIsAddingGoal] = useState(false);
 
   return(
     <div className={styles.savings}>
@@ -17,6 +18,16 @@ const SavingsGoal = (props) => {
               }) 
             }
            </select>
+           <span onClick={() => setIsAddingGoal(!isAddingGoal)}>Add</span>
+           {isAddingGoal && (
+            <form>
+              <input type="text" placeholder="Add New Goal" />
+              <input type="number" placeholder="Budget Amount" />
+              <p>Deadline:</p>
+              <input type="date" />
+              <button>Save</button>
+            </form>
+          )}
         </div>
         <div className={styles.saved}>
           <h2>Amount Saved:</h2>

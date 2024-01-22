@@ -7,12 +7,12 @@ const Budget = (props) => {
 
   return(
     <div className={styles.monthlyBudget}>
-      <h2>Your monthly spending budget is:</h2>
+      <h2>Your Monthly Spending Budget:</h2>
       <p>${props.budget === undefined ? "0.00" : props.budget}</p>
       <span onClick={() => setIsEditing(!isEditing)}>Edit</span>
       {isEditing && (
         <form>
-            <input type="text" placeholder="New Monthly Budget..." />
+            <input type="text" placeholder="Add New Budget Amount..." />
             <button>Finish</button>
         </form>
       )}

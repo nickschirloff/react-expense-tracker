@@ -50,7 +50,6 @@
         justify-content: center;
         border-radius: 50%;
         object-fit: cover;
-        background-color: lightblue;
     }
 }
 
@@ -76,7 +75,7 @@
     transition: background $speed;
 
     &:hover {
-        background-color: white;
+        background-color: $navbar-accent-color-hover;
     }
 
 }
