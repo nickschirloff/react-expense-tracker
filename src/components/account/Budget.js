@@ -12,7 +12,7 @@ const Budget = (props) => {
       <span onClick={() => setIsEditing(!isEditing)}>Edit</span>
       {isEditing && (
         <form>
-            <input type="text" placeholder="Add New Budget Amount..." />
+            <input type="number" step="0.01" placeholder="Set New Budget" />
             <button>Finish</button>
         </form>
       )}

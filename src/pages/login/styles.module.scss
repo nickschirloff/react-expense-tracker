@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .login {
     width: 100vw;
     height: 100vh;
@@ -6,39 +8,78 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
-    background-image: url('../../assets/img/voyager.jpg');
-    background-size: 100vw 100vh;
-    background-repeat: no-repeat;
-    
+
+    .backgroundImage {
+        width: 110vw;
+        height: 100vh;
+        position: absolute;
+        top: 0%;
+        left: -10%;
+        z-index: 0;
+    }
+
     .loginContainer {
-        padding: 2rem;
+        width: 40%;
+        height: 45%;
+        top: 25%;
+        right: 10%;
+        padding: 0.5rem;
+        position: absolute;
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-radius: 5px;
-        color: white;
-        background-color: gray;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: white;
+        text-align: center;
 
         h1 {
-            font-size: 2.75rem;
+            font-size: 2.5rem;
         }
         h3 {
-            margin: 0.25rem;
-            font-size: 1.75rem;
+            margin-top: 5px;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
         }
-        p {
-            margin: 1rem 0 0.5rem 0;
-            font-size: 18px;
+        span {
+            width: 80%;
+            margin-bottom: 5px;
+            font-size: 1.15rem;
+            font-weight: 400;
+            letter-spacing: .025rem;
         }
         button {
-            padding: 0.75rem 1.5rem;
-            border: none;
+            width: fit-content;
+            height: 15%;
+            margin-top: 20px;
+            gap: 10px;
+            display: flex;
+            align-items: center;
             border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: $button-blue;
+            white-space: nowrap;
+            font-size: 16px;
+            font-weight: 500;
+
+            img {
+                width: 20%;
+                height: 80%;
+                margin-left: 5px;
+                border-radius: 2px;
+                background-color: white;
+            }
+            p {
+                margin-right: 5px;
+            }
         }
 
         .error {
-            color: darkred;
+            margin-top: 10px;
+            color: red;
         }
+
     }
 
     a {
@@ -48,9 +89,10 @@
         left: 0%;
         border-radius: 2px 2px 0 0;
         cursor: pointer;
-        color: black;
-        background-color: white;
+        color: $font-color-light;
+        background-color: $font-color-dark;
         font-size: 14px;
+        text-decoration: none;
     }
 
 }

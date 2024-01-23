@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { auth, provider } from '../../config/firebaseConfig';
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import GoogleIcon from '../../assets/img/google_logo.png';
 import BackgroundImage from '../../assets/img/voyager.jpg';
 
 const Login = () => {
@@ -43,16 +44,23 @@ const Login = () => {
 
   return(
     <div className={styles.login}>
+      <img className={styles.backgroundImage} src={BackgroundImage} alt="" />
       <div className={styles.loginContainer}>
         <h1>Voyager Expense Tracker</h1>
         <h3>Explore the World, and Beyond</h3>
-        <p>Sign in with Google</p>
-        <button className={styles.googleLoginButton} onClick={signInWithGoogle}>Sign In</button>
+        <span>Your all-in-one manager for tracking your monthly expenses, and planning for your future adventures.</span>
+        <span>All with just one easy click.</span>
+        <button className={styles.googleLoginButton} onClick={signInWithGoogle}>
+          <img src={GoogleIcon} alt="" />
+          <p>Sign-in With Google</p>
+        </button>
         {loginError !== "" &&
           <p className={styles.error}>{loginError}</p>
         }
       </div>
-      <a>Image Sourced from Wikipedia, originally by NASA</a>
+      <a href="https://en.wikipedia.org/wiki/File:Voyager_spacecraft.jpg" target="_blank" rel="noreferrer">
+        Image Sourced from Wikipedia, Originally By NASA
+      </a>
     </div>
   )
 }
