@@ -5,17 +5,28 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+
+    .percentSaved {
+        padding: 1rem;
+        font-size: 20px;
+    }
 
     .savingsContainer {
         width: 90%;
+        margin: 0 30px 30px 30px;
         padding: 2rem;
         display: flex;
-        align-items: baseline;
-        justify-content: center;
-
+        flex-direction: column;
+        align-items: center;
         border: 1px solid gray;
         border-radius: 5px;
-        background-color: $accent-color-rose;
+
+        .savingsGoal {
+            width: 100%;
+            display: flex;
+            align-items: baseline;
+        }
 
         .goal, .saved {
             width: 50%;
@@ -23,38 +34,64 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
 
-            h2 {
-                margin-bottom: 15px;
-            }
-    
             p {
+                margin: 15px 15px 5px 15px;
                 font-size: 20px;
             }
 
             span {
-                padding: 0.25rem;
                 cursor: pointer;
-                user-select: none;
                 color: blue;
                 font-size: 16px;
                 text-decoration: underline;
             }
-    
-            input {
-                padding: 0.5rem;
-                border: none;
-                border-radius: 5px;
-            }
-    
-            button {
-                margin-left: 10px;
-                padding: 0.5rem 1rem;
-    
-            }
         }
 
-        
+        .goal {
+            select {
+                width: 25%;
+                margin: 15px 15px 5px 15px;
+                padding: 0.25rem;
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+
+                input {
+                    margin-top: 10px;
+                    padding: 0.5rem;
+                }
+
+                p {
+                    font-size: 16px;
+                }
+
+                button {
+                    margin-top: 10px;
+                    padding: 0.5rem 0.25rem;
+                }
+            }
+        }   
+
+        .saved {
+            form {
+                padding: 0.5rem;
+                gap: 10px;
+                display: flex;
+
+                input {
+                    padding: 0.5rem;
+                    border: 1px solid gray;
+                }
+                button {
+                    padding: 0.5rem 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }

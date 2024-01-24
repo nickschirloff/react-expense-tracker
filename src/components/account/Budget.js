@@ -4,6 +4,7 @@ import { useState } from 'react';
 const Budget = (props) => {
 
   const [isEditing, setIsEditing] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   return(
     <div className={styles.monthlyBudget}>
@@ -12,7 +13,7 @@ const Budget = (props) => {
       <span onClick={() => setIsEditing(!isEditing)}>Edit</span>
       {isEditing && (
         <form>
-            <input type="number" step="0.01" placeholder="Set New Budget" />
+            <input type="number" step="0.01" placeholder="Set New Budget..." />
             <button>Finish</button>
         </form>
       )}

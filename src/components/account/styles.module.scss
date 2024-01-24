@@ -1,22 +1,35 @@
 @import '../../variables.scss';
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number]{
+    -moz-appearance: textfield;
+}
+
 .account {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
     h1 {
         font-size: 36px;
     }
 
-    span {
+    .overbudget, .underbudget {
         padding: 1rem;
         font-size: 20px;
     }
 
     .overbudget {
         color: $font-color-overspend;
+    }
+    .underbudget {
+        color: $font-color-underbudget;
     }
 
     .accountContainer {
@@ -26,51 +39,50 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border: 1px solid gray;
+        border: 1px solid $font-color-dark;
         border-radius: 5px;
-        background-color: lightblue;
-    }
 
-    .monthlyDetails {
-        width: 100%;
-        display: flex;
-        align-items: baseline;
-    }
-
-    .monthlyExpenses, .monthlyBudget {
-        width: 50%;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        h2 {
-            margin-bottom: 15px;
+        .monthlyDetails {
+            width: 100%;
+            display: flex;
+            align-items: baseline;
         }
 
-        p {
-            font-size: 20px;
-        }
+        .monthlyExpenses, .monthlyBudget {
+            width: 50%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-        span {
-            padding: 0.25rem;
-            cursor: pointer;
-            user-select: none;
-            color: blue;
-            font-size: 16px;
-            text-decoration: underline;
-        }
+            p {
+                margin: 15px 15px 5px 15px;
+                font-size: 20px;
+            }
+            span {
+                cursor: pointer;
+                color: blue;
+                font-size: 16px;
+                text-decoration: underline;
+            }
 
-        input {
-            padding: 0.5rem;
-            border: none;
-            border-radius: 5px;
-        }
+            form {
+                padding: 0.5rem;
+                gap: 10px;
+                display: flex;
 
-        button {
-            margin-left: 10px;
-            padding: 0.5rem 1rem;
-
+                input {
+                    padding: 0.5rem;
+                    border: 1px solid gray;
+                }
+                button {
+                    padding: 0.5rem 1rem;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                
+            }
         }
     }
 }

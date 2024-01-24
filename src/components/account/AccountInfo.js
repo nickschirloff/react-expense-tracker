@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 const AccountInfo = (props) => {
 
-  const [overBudget, setOverBudget] = useState(true);
+  const [overBudget, setOverBudget] = useState(false);
 
   const getIntro = () => {
     const currTime = new Date().getHours();
@@ -34,7 +34,7 @@ const AccountInfo = (props) => {
         </div>
         {overBudget ? 
           <span className={styles.overbudget}>You have over spent your monthly income. Be careful with future spending.</span> :
-          <span>Your spending this month is in good standing. Good job!</span>
+          <span className={styles.underbudget}>Your spending this month is in good standing. Good job!</span>
         }
       </div>
     </div>

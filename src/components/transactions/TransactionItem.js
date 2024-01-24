@@ -7,10 +7,16 @@ const TransactionItem = (props) => {
       <div className={styles.transactionData}>
         <p>{props.timestamp}</p>
         {(props.type === "credit") ? 
-          <p className={styles.credit}>{props.amount}</p> :
-          <p className={styles.debit}>-{props.amount}</p>
+          <div className={styles.innerTransactionDiv}>
+            <p className={styles.credit}>{props.amount}</p>
+            <span> {props.description}</span>
+          </div>
+           :
+          <div className={styles.innerTransactionDiv}>
+            <p className={styles.debit}>-{props.amount}</p>
+            <span>{props.description}</span>
+          </div>
         }
-        <span>{props.description}</span>
       </div>
       <button>X</button>
     </div>

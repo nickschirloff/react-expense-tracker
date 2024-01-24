@@ -58,6 +58,10 @@
             }
         }
 
+        .innerTransactionDiv {
+            display: flex;
+            white-space: pre;
+        }
         .credit {
             color: green;
         }
