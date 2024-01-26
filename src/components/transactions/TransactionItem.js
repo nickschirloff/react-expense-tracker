@@ -1,7 +1,11 @@
 import styles from './styles.module.scss';
+import { useDeleteTransaction } from '../../hooks/useDeleteTransaction';
+import { formatString } from '../../util/Util';
 
 const TransactionItem = (props) => {
 
+  const { deleteTransaction } = useDeleteTransaction();
+ 
   return(
     <div className={styles.transactionItem}>
       <div className={styles.transactionData}>
@@ -18,7 +22,7 @@ const TransactionItem = (props) => {
           </div>
         }
       </div>
-      <button>X</button>
+      <button onClick={() => deleteTransaction(props.id)}>X</button>
     </div>
   )
 }

@@ -1,11 +1,13 @@
+import styles from './styles.module.scss';
 import Budget from './Budget';
 import Expenses from './Expenses';
-import styles from './styles.module.scss';
-import { useState } from 'react';
+import { useGetBudget } from '../../hooks/useGetBudget';
+import { useGetUserData } from '../../hooks/useGetUserData';
 
 const AccountInfo = (props) => {
 
-  const [overBudget, setOverBudget] = useState(false);
+  const { name } = useGetUserData();
+  const { budgetAmount } = useGetBudget();
 
   const getIntro = () => {
     const currTime = new Date().getHours();
@@ -20,22 +22,23 @@ const AccountInfo = (props) => {
     }
   };
 
-  const checkBudget = (balance, budget) => {
-    setOverBudget(balance > budget ? true : false);
+  const checkBudget = () => {
+    if(parseFloat(props.transactionsTotal) > parseFloat(budgetAmount)) {
+      return <span className={styles.overbudget}>You have over spent your monthly income. Be careful with future spending.</span>;
+    } else {
+      return <span className={styles.underbudget}>Your spending this month is in good standing. Good job!</span>;
+    }
   };
 
   return(
     <div className={styles.account}>
-      <h1>{getIntro()}, {props.name}.</h1>
+      <h1>{getIntro()}, {name}.</h1>
       <div className={styles.accountContainer}>
         <div className={styles.monthlyDetails}>
-          <Expenses />
-          <Budget />
+          <Expenses expenses={props.transactionsTotal} />
+          <Budget budget={budgetAmount} />
         </div>
-        {overBudget ? 
-          <span className={styles.overbudget}>You have over spent your monthly income. Be careful with future spending.</span> :
-          <span className={styles.underbudget}>Your spending this month is in good standing. Good job!</span>
-        }
+        {checkBudget()}
       </div>
     </div>
   )

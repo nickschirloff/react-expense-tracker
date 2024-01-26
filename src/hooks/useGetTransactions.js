@@ -5,6 +5,7 @@ import { useGetUserData } from './useGetUserData';
 
 export const useGetTransactions = () => {
     const [transactions, setTransactions] = useState([]);
+    const [transactionsTotal, setTransactionsTotal] = useState("");
 
     const transactionCollection = collection(db, "transactions");
     const { userID } = useGetUserData();
@@ -18,15 +19,22 @@ export const useGetTransactions = () => {
             
             unsubscribe = onSnapshot(queryTransactions, (snapshot) => {
                 let docs = [];
+                let totalIncome = 0.00;
 
                 snapshot.forEach((doc) => {
                     const data = doc.data();
                     const id = doc.id;
 
                     docs.push({ ...data, id });
+
+                    if(data.type === "credit") {
+                        totalIncome -= parseFloat(data.amount).toFixed(2);
+                    } else {
+                        totalIncome += +parseFloat(data.amount).toFixed(2);
+                    }
                 });
                 setTransactions(docs);
-
+                setTransactionsTotal(parseFloat(totalIncome).toFixed(2));
             });
         } catch(err) {
             console.error(err);
@@ -38,5 +46,5 @@ export const useGetTransactions = () => {
         getTransactions();
     }, []);
 
-    return { transactions };
+    return { transactions, transactionsTotal };
 }

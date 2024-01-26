@@ -2,13 +2,15 @@ import styles from './styles.module.scss';
 import { useState } from 'react';
 import { auth, provider } from '../../config/firebaseConfig';
 import { signInWithPopup } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { useGetUserData } from '../../hooks/useGetUserData';
 import GoogleIcon from '../../assets/img/google_logo.png';
 import BackgroundImage from '../../assets/img/voyager.jpg';
 
 const Login = () => {
 
   const navigate = useNavigate();
+  const { isAuth } = useGetUserData();
   const [loginError, setLoginError] = useState("");
 
   const signInWithGoogle = async () => {
@@ -28,6 +30,10 @@ const Login = () => {
         setLoginError(code);
       });
   };
+
+  if(isAuth) {
+    return <Navigate to="/home" />
+  }
 
   const handleError = (error) => {
     switch(error) {

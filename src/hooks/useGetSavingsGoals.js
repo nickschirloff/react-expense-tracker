@@ -3,20 +3,20 @@ import { query, collection, where, orderBy, onSnapshot } from 'firebase/firestor
 import { db } from '../config/firebaseConfig';
 import { useGetUserData } from './useGetUserData';
 
-export const useGetBudgets = () => {
-    const [budgets, setBudgets] = useState([]);
+export const useGetSavingsGoals = () => {
+    const [goals, setGoals] = useState([]);
 
-    const budgetCollection = collection(db, "budgets");
+    const goalCollection = collection(db, "goals");
     const { userID } = useGetUserData();
 
-    const getBudgets = async() => {
+    const getGoals = async() => {
         let unsubscribe;
         try {
-            const queryBudgets = query(budgetCollection,
+            const queryGoals = query(goalCollection,
                 where("userID", "==", userID),
                 orderBy("budgetDeadline"));
             
-            unsubscribe.onSnapshot(queryBudgets, (snapshot) => {
+            unsubscribe = onSnapshot(queryGoals, (snapshot) => {
                 let docs = [];
 
                 snapshot.forEach((doc) => {
@@ -25,7 +25,7 @@ export const useGetBudgets = () => {
 
                     docs.push({...data, id});
                 });
-                setBudgets(docs);
+                setGoals(docs);
             })
         } catch(err) {
             console.error(err);
@@ -33,8 +33,8 @@ export const useGetBudgets = () => {
     };
 
     useEffect(() => {
-        getBudgets();
+        getGoals();
     }, []);
     
-    return { budgets };
+    return { goals };
 }
