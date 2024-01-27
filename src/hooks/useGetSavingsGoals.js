@@ -14,7 +14,7 @@ export const useGetSavingsGoals = () => {
         try {
             const queryGoals = query(goalCollection,
                 where("userID", "==", userID),
-                orderBy("budgetDeadline"));
+                orderBy("goalDeadline"));
             
             unsubscribe = onSnapshot(queryGoals, (snapshot) => {
                 let docs = [];
@@ -22,7 +22,6 @@ export const useGetSavingsGoals = () => {
                 snapshot.forEach((doc) => {
                     const data = doc.data();
                     const id = doc.id;
-
                     docs.push({...data, id});
                 });
                 setGoals(docs);
@@ -30,6 +29,7 @@ export const useGetSavingsGoals = () => {
         } catch(err) {
             console.error(err);
         }
+        return () => unsubscribe();
     };
 
     useEffect(() => {

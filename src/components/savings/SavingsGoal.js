@@ -1,18 +1,31 @@
 import styles from './styles.module.scss';
-import { useState } from 'react';
+import { formatNumberString, getGoalPercentage } from '../../util/Util';
+import { useEffect, useState } from 'react';
 import { useAddSavingsGoal } from '../../hooks/useAddSavingsGoal';
+import { useGetSavingsGoals } from '../../hooks/useGetSavingsGoals';
 
-const SavingsGoal = ({ data }) => {
+const SavingsGoal = () => {
+
+  console.log("Here");
+  const { goals } = useGetSavingsGoals();
+  const [currentGoal, setCurrentGoal] = useState({});
+
+  useEffect(() => {
+    setCurrentGoal(goals[0]);
+    console.log("CG: " + currentGoal);
+  }, []);
+
+
 
   const { addGoal } = useAddSavingsGoal();
 
-  const [currentGoal, setCurrentGoal] = useState({});
-  const [goalName, setGoalName] = useState("");
-  const [goalAmount, setGoalAmount] = useState("");
-  const [goalDeadline, setGoalDeadline] = useState("");
 
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingGoal, setIsAddingGoal] = useState(false);
+
+  const handleSelectChange = (e) => {
+    setCurrentGoal(goals[e.target.value]);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +38,10 @@ const SavingsGoal = ({ data }) => {
         <div className={styles.savingsGoal}>
           <div className={styles.goal}>
             <h2>Your Current Savings Goal:</h2>
-            <select>
+            <select onChange={handleSelectChange} defaultValue={goals[0]}>
               {
-                data.map((item, index) => {
-                  return  <option value={item} key={index}>{item}</option>;
+                goals.map((goal, index) => {
+                  return  <option value={index} key={index}>{formatNumberString('' + goal.goalAmount)} - {goal.goalName}</option>;
                 }) 
               }
             </select>
@@ -45,7 +58,7 @@ const SavingsGoal = ({ data }) => {
           </div>
           <div className={styles.saved}>
             <h2>Amount Saved:</h2>
-            {/* <p>${props.amountSaved === undefined ? "0.00" : props.amountSaved}</p> */}
+            <p>${currentGoal === undefined ? "0.05" : currentGoal.amountSaved}</p>
             <span onClick={() => setIsEditing(!isEditing)}>Edit</span>
             {isEditing && (
               <form>
@@ -55,7 +68,9 @@ const SavingsGoal = ({ data }) => {
             )}
           </div>
         </div>
-        <span className={styles.percentSaved}>0% of Goal Saved</span>
+        <span className={styles.percentSaved}>
+          {currentGoal === undefined ? "0.05" : getGoalPercentage(currentGoal.amountSaved, currentGoal.goalAmount)}% of Goal Saved
+        </span>
       </div>
     </div>
   )

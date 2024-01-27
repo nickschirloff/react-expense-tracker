@@ -64,9 +64,10 @@
         }
         
         .credit, .debit {
-            width: 4rem;
+            width: 4.5rem;
             overflow: hidden;
             border-right: 1px solid black;
+            text-align: left;
         }
         .credit {
             color: green;

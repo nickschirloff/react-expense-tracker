@@ -1,17 +1,14 @@
 import styles from './styles.module.scss';
+import { formatNumberString } from '../../util/Util';
 
 const Expenses = (props) => {
-
-  const formatString = (str) => {
-    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
  
   return(
     <div className={styles.monthlyExpenses}>
       <h2>Your Total Monthly Balance:</h2>
       {props.expenses >= 0 ? 
-        <p>${formatString(props.expenses)}</p> :
-        <p>-${formatString(parseFloat(props.expenses*-1).toFixed(2))}</p>
+        <p>${formatNumberString(props.expenses)}</p> :
+        <p>-${formatNumberString(parseFloat(props.expenses*-1).toFixed(2))}</p>
       }
     </div>
   )

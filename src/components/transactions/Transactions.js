@@ -30,7 +30,7 @@ const Transactions = ({ userTransactions }) => {
       <h1>Transactions</h1>
       <form onSubmit={onSubmit}>
         <input type="text" placeholder="Description" required value={description} onChange={(e) => setDescription(e.target.value)}/>
-        <input type="number" step="0.01" placeholder="Amount" min="0" required value={amount} onChange={(e) => setAmount(e.target.value)} />
+        <input type="number" step="0.01" placeholder="Amount" min="0" required value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
         <input type="radio" id="credit" value="credit" checked={type === "credit"} onChange={(e) => setType(e.target.value)}/>
         <label htmlFor="credit">Credit</label>
         <input type="radio" id="debit" value="debit" checked={type === "debit"} onChange={(e) => setType(e.target.value)}/>
@@ -39,8 +39,7 @@ const Transactions = ({ userTransactions }) => {
       </form>
       <div className={styles.transactionsContainer}>
         {userTransactions.map((transaction, index) => {
-          const { timestamp, description, amount, type} = transaction;
-          return <TransactionItem timestamp={timestamp} description={description} amount={amount} type={type} id={transaction.id} key={index} />
+          return <TransactionItem transaction={transaction} key={index} />
         })}
       </div>
     </div>

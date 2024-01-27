@@ -4,7 +4,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 
 export const useGetBudget = () => {
-    const [budgetAmount, setBudgetAmount] = useState("");
+    const [budgetAmount, setBudgetAmount] = useState(0.00);
     const { userID } = useGetUserData();
     const docRef = doc(db, "budgets", userID);
     
@@ -16,7 +16,7 @@ export const useGetBudget = () => {
             return amount;
         } else {
             console.error("Error: Cannot get user budget.");
-            return "0.00";
+            return 0.00;
         }
     };
 

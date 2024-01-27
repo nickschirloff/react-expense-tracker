@@ -10,7 +10,6 @@ import { useGetSavingsGoals } from '../../hooks/useGetSavingsGoals';
 const Home = () => {
 
   const { transactions, transactionsTotal } = useGetTransactions();
-  const { goals } = useGetSavingsGoals();
 
   console.log("Render");
 
@@ -22,7 +21,7 @@ const Home = () => {
         </NavItem>
       </Navbar>
       <AccountInfo transactionsTotal={transactionsTotal} />
-      <SavingsGoal data={goals} />
+      <SavingsGoal />
       <Transactions userTransactions={transactions} />
     </>
   )
