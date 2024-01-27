@@ -6,19 +6,15 @@ import { useGetSavingsGoals } from '../../hooks/useGetSavingsGoals';
 
 const SavingsGoal = () => {
 
-  console.log("Here");
   const { goals } = useGetSavingsGoals();
+
   const [currentGoal, setCurrentGoal] = useState({});
 
   useEffect(() => {
     setCurrentGoal(goals[0]);
-    console.log("CG: " + currentGoal);
-  }, []);
+  }, [goals[0]]);
 
-
-
-  const { addGoal } = useAddSavingsGoal();
-
+  console.log("CG: " + currentGoal);
 
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingGoal, setIsAddingGoal] = useState(false);
@@ -31,7 +27,7 @@ const SavingsGoal = () => {
     e.preventDefault();
 
   }
-
+  
   return(
     <div className={styles.savings}>
       <div className={styles.savingsContainer}>
@@ -58,7 +54,7 @@ const SavingsGoal = () => {
           </div>
           <div className={styles.saved}>
             <h2>Amount Saved:</h2>
-            <p>${currentGoal === undefined ? "0.05" : currentGoal.amountSaved}</p>
+            <p>${currentGoal === undefined ? "0.00" : currentGoal.amountSaved}</p>
             <span onClick={() => setIsEditing(!isEditing)}>Edit</span>
             {isEditing && (
               <form>
@@ -69,7 +65,7 @@ const SavingsGoal = () => {
           </div>
         </div>
         <span className={styles.percentSaved}>
-          {currentGoal === undefined ? "0.05" : getGoalPercentage(currentGoal.amountSaved, currentGoal.goalAmount)}% of Goal Saved
+          {currentGoal === undefined ? "0.00" : getGoalPercentage(currentGoal.amountSaved, currentGoal.goalAmount)}% of Goal Saved
         </span>
       </div>
     </div>

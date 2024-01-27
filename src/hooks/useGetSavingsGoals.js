@@ -24,6 +24,7 @@ export const useGetSavingsGoals = () => {
                     const id = doc.id;
                     docs.push({...data, id});
                 });
+                console.log("Setting");
                 setGoals(docs);
             })
         } catch(err) {

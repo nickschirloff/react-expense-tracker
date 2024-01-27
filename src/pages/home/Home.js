@@ -5,12 +5,10 @@ import AccountInfo from '../../components/account/AccountInfo';
 import SavingsGoal from '../../components/savings/SavingsGoal';
 import Transactions from '../../components/transactions/Transactions';
 import { useGetTransactions } from '../../hooks/useGetTransactions';
-import { useGetSavingsGoals } from '../../hooks/useGetSavingsGoals';
 
 const Home = () => {
 
   const { transactions, transactionsTotal } = useGetTransactions();
-
   console.log("Render");
 
   return(
