@@ -1,23 +1,28 @@
 import styles from './styles.module.scss';
+import moment from 'moment';
 import { formatNumberString, getGoalPercentage } from '../../util/Util';
 import { useEffect, useState } from 'react';
 import { useAddSavingsGoal } from '../../hooks/useAddSavingsGoal';
 import { useGetSavingsGoals } from '../../hooks/useGetSavingsGoals';
 
 const SavingsGoal = () => {
-
+  console.log("Render Tracking: Goals");
   const { goals } = useGetSavingsGoals();
 
   const [currentGoal, setCurrentGoal] = useState({});
 
   useEffect(() => {
     setCurrentGoal(goals[0]);
-  }, [goals[0]]);
+  }, [goals]);
 
-  console.log("CG: " + currentGoal);
+  const { addGoal } = useAddSavingsGoal();
 
   const [isEditing, setIsEditing] = useState(false);
   const [isAddingGoal, setIsAddingGoal] = useState(false);
+
+  const [newGoalDesc, setNewGoalDesc] = useState("");
+  const [newGoalAmount, setNewGoalAmount] = useState("");
+  const [newGoalDeadline, setNewGoalDeadline] = useState(new Date());
 
   const handleSelectChange = (e) => {
     setCurrentGoal(goals[e.target.value]);
@@ -25,7 +30,18 @@ const SavingsGoal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log("TEST: " + newGoalDesc);
+    // console.log("TEST2: " + newGoalAmount);
+    // console.log("TEST3: " + newGoalDeadline);
 
+    addGoal({
+      goalName: newGoalDesc,
+      goalAmount: Number(newGoalAmount),
+      goalDeadline: newGoalDeadline
+    });
+    setNewGoalDesc("");
+    setNewGoalAmount("");
+    setNewGoalDeadline("");
   }
   
   return(
@@ -44,17 +60,17 @@ const SavingsGoal = () => {
             <span onClick={() => setIsAddingGoal(!isAddingGoal)}>Add</span>
             {isAddingGoal && (
               <form>
-                <input type="text" placeholder="Add New Goal" />
-                <input type="number" step="0.01" placeholder="Budget Amount" />
+                <input type="text" placeholder="Add New Goal" onChange={(e) => setNewGoalDesc(e.target.value)} />
+                <input type="number" step="0.01" placeholder="Budget Amount" onChange={(e) => setNewGoalAmount(e.target.value)} />
                 <p>Deadline:</p>
-                <input type="date" />
-                <button>Save</button>
+                <input type="date" onChange={(e) => setNewGoalDeadline(moment(e.target.value).format("MM/DD/YYYY"))} />
+                <button onClick={handleSubmit}>Save</button>
               </form>
             )}
           </div>
           <div className={styles.saved}>
             <h2>Amount Saved:</h2>
-            <p>${currentGoal === undefined ? "0.00" : currentGoal.amountSaved}</p>
+            <p>${currentGoal === undefined ? "0.00" : currentGoal.goalAmountSaved}</p>
             <span onClick={() => setIsEditing(!isEditing)}>Edit</span>
             {isEditing && (
               <form>
@@ -64,9 +80,16 @@ const SavingsGoal = () => {
             )}
           </div>
         </div>
-        <span className={styles.percentSaved}>
-          {currentGoal === undefined ? "0.00" : getGoalPercentage(currentGoal.amountSaved, currentGoal.goalAmount)}% of Goal Saved
-        </span>
+        {currentGoal !== undefined &&
+          <div className={styles.percentSaved}>
+            <span>{getGoalPercentage(currentGoal.goalAmountSaved, currentGoal.goalAmount)}% of Goal ({currentGoal.goalAmount})</span>
+            <span>Deadline: {currentGoal.goalDeadline}</span>
+          </div>
+        
+        }
+        {/* <span className={styles.percentSaved}>
+          {currentGoal === undefined ? "0.00" : getGoalPercentage(currentGoal.goalAmountSaved, currentGoal.goalAmount)}% of Goal Saved
+        </span> */}
       </div>
     </div>
   )

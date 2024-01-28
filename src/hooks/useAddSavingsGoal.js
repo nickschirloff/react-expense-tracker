@@ -15,6 +15,7 @@ export const useAddSavingsGoal = () => {
             userID,
             goalName,
             goalAmount,
+            goalAmountSaved: 0.00,
             goalDeadline
         });
     }
