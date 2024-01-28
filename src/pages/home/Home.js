@@ -9,7 +9,6 @@ import { useGetTransactions } from '../../hooks/useGetTransactions';
 const Home = () => {
 
   const { transactions, transactionsTotal } = useGetTransactions();
-  console.log("Render");
 
   return(
     <>
