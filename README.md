@@ -28,9 +28,9 @@ Finally, run the project.
 Some permissions may need to be enabled when interacting with the database.
 ## Screenshots
 
-<img src="https://github.com/nickschirloff/react-expense-tracker/blob/main/git-images/voyager-img-1.png" alt="" align="left" width="500">
+<img src="https://github.com/nickschirloff/react-expense-tracker/blob/main/git-images/voyager-img-1.png" alt="" align="left" width="650">
 <br clear="left">
 
-<img src="https://github.com/nickschirloff/react-expense-tracker/blob/main/git-images/voyager-img-2.png" alt="" align="left" width="500">
+<img src="https://github.com/nickschirloff/react-expense-tracker/blob/main/git-images/voyager-img-2.png" alt="" align="left" width="650">
 <br clear="left">
 
