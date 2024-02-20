@@ -1,10 +1,9 @@
-import { useSetSavingsGoal } from '../../hooks/useSetSavingsGoal';
 import styles from './styles.module.scss';
 import { useState } from 'react';
+import { useSetSavingsGoal } from '../../hooks/useSetSavingsGoal';
 import { useDeleteSavingsGoal } from '../../hooks/useDeleteSavingsGoal';
 
 const SavingsGoalDetail = ({ currentGoal }) => {
-
   const { setGoal } = useSetSavingsGoal();
   const { deleteSavingsGoal } = useDeleteSavingsGoal();
 
@@ -24,14 +23,14 @@ const SavingsGoalDetail = ({ currentGoal }) => {
       <p>${currentGoal === undefined ? "0.00" : currentGoal.goalAmountSaved}</p>
       <span onClick={() => setIsEditing(!isEditing)}>Edit</span>
       {isEditing && (
-        <form onSubmit={handleSubmit}>
-          <input type="number" step="0.01" placeholder="Add to Goal..." onChange={(e) => setBudgetUpdate(e.target.value)}/>
-          <button>Save</button>
-        </form>
-        
+        <>
+          <form onSubmit={handleSubmit}>
+            <input type="number" step="0.01" placeholder="Add to Goal..." onChange={(e) => setBudgetUpdate(e.target.value)}/>
+            <button>Save</button>
+          </form>
+          <span onClick={() => deleteSavingsGoal(currentGoal.id)}>Delete</span>
+        </>
       )}
-      <span onClick={() => deleteSavingsGoal(currentGoal.id)}>Delete</span>
-
     </div>
   )
 };

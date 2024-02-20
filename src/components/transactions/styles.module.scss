@@ -19,7 +19,7 @@
             padding: 0.5rem;
         }
         input[type=number] {
-            width: 12rem;
+            width: 12;
             padding: 0.5rem;
         }
 
@@ -27,6 +27,11 @@
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
+        }
+
+        .radioButtons {
+            gap: 10px;
+            display: flex;
         }
     }
 
@@ -61,6 +66,12 @@
         .innerTransactionDiv {
             display: flex;
             white-space: pre;
+            
+            .transactionDesc {
+                margin-right: 15px;
+                text-overflow: ellipsis;
+
+            }
         }
         
         .credit, .debit {
@@ -76,4 +87,32 @@
             color: red;
         }
     }
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+    .transactions {
+        form {
+            display: flex;
+            flex-direction: column;
+            input[type=text] {
+                width: 50vw;
+            }
+
+            input[type=number] {
+                width: 50vw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-mobile) {
+    .transactions {
+        .transactionItem {
+            .transactionData {
+                p {
+                    margin-right: 15px;
+                }
+            }
+        }
+    }    
 }

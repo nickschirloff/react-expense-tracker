@@ -3,10 +3,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import { useAddSavingsGoal } from '../../hooks/useAddSavingsGoal';
 
-import { formatNumberString } from '../../util/Util';
-
 const SavingsGoalList = ({ goals, currentGoal, updateIndex }) => {
-
     const { addGoal } = useAddSavingsGoal();
 
     const [isEditing, setIsEditing] = useState(false);

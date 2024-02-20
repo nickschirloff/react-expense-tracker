@@ -96,3 +96,30 @@
     }
 
 }
+
+@media screen and (max-width: 950px) {
+    .login {
+        .loginContainer {
+            width: 50%;
+            top: 25%;
+            right: 25%;
+            
+        }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .login {
+        .loginContainer {
+            height: 50%;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .login {
+        .loginContainer {
+            height: 60%;
+        }
+    }
+}

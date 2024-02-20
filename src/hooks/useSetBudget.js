@@ -11,12 +11,15 @@ export const useSetBudget = () => {
 
         if(docSnap.exists()) {
             await updateDoc(docRef, {
-                amount: newBudget
+                "amount": newBudget
             });
         } else {
-            await setDoc(doc(db, "budgets", userID, {
-                amount: newBudget
-            }))
+            console.log("DB: " + typeof(db));
+            console.log("DB: " + typeof("budgets"));
+            console.log("DB: " + typeof(userID));
+            await setDoc(doc(db, "budgets", userID), {
+                "amount": newBudget
+            })
         };
         window.location.reload(false);
     };

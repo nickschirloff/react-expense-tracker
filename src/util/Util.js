@@ -1,6 +1,6 @@
 
 export const formatNumberString = (str) => {
-    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    return str.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
 export const getGoalPercentage = (savedAmount, totalAmount) => {

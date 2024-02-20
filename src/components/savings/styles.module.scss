@@ -98,3 +98,16 @@
         }
     }
 }
+
+@media screen and (max-width: $breakpoint-tablet) {
+    .savings {
+        .savingsContainer {
+            width: 80%;
+            .savingsGoal {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+}

@@ -1,6 +1,5 @@
 import styles from './styles.module.scss';
 import { useDeleteTransaction } from '../../hooks/useDeleteTransaction';
-import { formatNumberString } from '../../util/Util';
 
 const TransactionItem = ({ transaction }) => {
 
@@ -13,10 +12,10 @@ const TransactionItem = ({ transaction }) => {
         <p>{timestamp}</p>
         <div className={styles.innerTransactionDiv}>
           {(type === "credit") ? 
-            <p className={styles.credit}>{formatNumberString("" + amount)}</p> :
-            <p className={styles.debit}>-{formatNumberString("" + amount)}</p>
+            <p className={styles.credit}>{amount.toFixed(2)}</p> :
+            <p className={styles.debit}>-{amount.toFixed(2)}</p>
           }
-          <span>{description}</span>
+          <span className={styles.transactionDesc}>{description}</span>
         </div>
       </div>
       <button onClick={() => deleteTransaction(id)}>X</button>

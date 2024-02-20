@@ -1,12 +1,12 @@
 import styles from './styles.module.scss';
 import { useState } from 'react';
 import { useSetBudget } from '../../hooks/useSetBudget';
+import { formatNumberString } from '../../util/Util';
 
 const Budget = (props) => {
 
   const { setBudget } = useSetBudget();
   const [isEditing, setIsEditing] = useState(false);
-  // const [isError, setIsError] = useState(false);
   const [newBudget, setNewBudget] = useState(0.00);
 
   const handleSubmit = async(e) => {
@@ -22,7 +22,7 @@ const Budget = (props) => {
   return(
     <div className={styles.monthlyBudget}>
       <h2>Your Monthly Spending Budget:</h2>
-      <p>${props.budget === undefined ? "0.00" : formatBudgetString("" + props.budget)}</p>
+      <p>${props.budget === undefined ? "0.00" : formatNumberString("" + props.budget)}</p>
       <span onClick={() => setIsEditing(!isEditing)}>Edit</span>
       {isEditing && (
         <form onSubmit={handleSubmit}>

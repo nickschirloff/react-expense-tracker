@@ -86,3 +86,16 @@ input[type=number]{
         }
     }
 }
+
+@media screen and (max-width: $breakpoint-tablet) {
+    .account {
+        .accountContainer {
+            width: 80%;
+            .monthlyDetails {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+}
